@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: rgb(255, 255, 255);
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin-bottom: 10%;
+      font-weight: 100px;
+      font-weight: bold;
+
+    }
+
+    #fieldset {
+      background-color: #eeeeee;
+
+
+    }
+
+    legend {
+      background-color: rgb(0, 0, 0);
+      color: white;
+      padding: 5px 10px;
+    }
+
+    #basic1 {
+      float: left;
+      background: rgb(255, 255, 255);
+      width: 50%;
+
+    }
+
+    #basic2 {
+
+
+
+
+      float: right;
+      background: rgb(255, 255, 255);
+      width: 50%;
+    }
+
+    #leftbox {
+      float: left;
+
+      width: 25%;
+      height: 280px;
+    }
+
+    #middlebox {
+      float: left;
+
+      width: 50%;
+      height: 280px;
+    }
+
+    #rightbox {
+      float: right;
+
+      width: 25%;
+      height: 280px;
+    }
+
+    #filedset {
+      display: flex;
+
+    }
+
+    #fs1 {
+      float: left;
+      height: 50%;
+      width: 50%;
+    }
+
+    #fs1 {
+      float: right;
+      width: 50%;
+      height: 50%;
+    }
+
+
+    input[type=submit],
+    #eu_div1,
+    #wed_div1 {
+
+      position: relative;
+      background-color: #f3faf8;
+      font-weight: bold;
+      border: none;
+      color: rgb(0, 0, 0);
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <h1 style=" font-family: Verdana, Geneva, Tahoma, sans-serif;">Job Application Form</h1>
+  </center>
+  <form action="/form" method="post">
+    <!--for basic details-->
+    <fieldset>
+
+      <legend> Basic Detail</legend>
+      <div id="boxes">
+        <table id="basic1">
+          <tr>
+            <td><label for="username">First Name :</label></td>
+            <td><input type="text" id="fname" name="fname"> </td>
+          </tr>
+          <tr>
+            <td><label for="desi">Designation :</label></td>
+            <td><input type="text" id="desi" name="desi"></td>
+          </tr>
+          <tr>
+            <td><label for="email">Email</label></td>
+            <td><input type="email" id="email" name="email"></td>
+          </tr>
+          <tr>
+            <td><label for="phone"> Phone Number</label></td>
+            <td><input type="tel" id="phone" name="phone"></td>
+          </tr>
+          <tr>
+            <td>
+              <p>Gender :</p>
+            <td><input type="radio" id="male" name="gender" value="male">
+              <label for="male">Male</label>
+              <input type="radio" id="css" name="gender" value="female">
+              <label for="female">Female</label>
+              <input type="radio" id="other" name="gender" value="other">
+              <label for="other">Other</label>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td> <label for="relation"> Relationship state </label></td>
+            <td> <select id="rel" name="rel">
+                <% for(var i=0;i<rel.length;i++) {%>
+                  <option value="singal">
+                    <%= rel[i].s_value %>
+                  </option>
+
+
+                  <%}%>
+            </td>
+            </select>
+          </tr>
+        </table>
+        <table id="basic2">
+          <tr>
+            <td> <label for="username">Last Name :</label></td>
+            <td> <input type="text" id="lname" name="lname"></td>
+          </tr>
+          <tr>
+            <td><label for="ad1">Address 1:</label></td>
+            <td><input type="text" id="ad1" name="ad1"></td>
+          </tr>
+
+
+          <tr>
+            <td> <label for="state"> state </label></td>
+            <td> <select id="state" name="state" onchange="changecity()">
+                <% for(var i=0;i<state.length;i++) {%>
+                  <option value="<%= state[i].sid %>">
+                    <%= state[i].state_name %>
+                  </option>
+                  <%}%>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td> <label for="city"> city </label></td>
+            <td> <select id="city" name="city">
+                <% for(var i=0;i<city.length;i++) {%>
+                  <option value="Ahmedabad">
+                    <%= city[i].city_name %>
+                  </option>
+                  <%}%>
+              </select>
+            </td>
+          </tr>
+
+
+
+          <tr>
+            <td> <label for="zipcode"> zip code </label></td>
+            <td><input type="text" id="zip" name="zip"></td>
+          </tr>
+
+
+
+
+          <tr>
+            <td><label for="dob"> Date of Birth </label></td>
+            <td><input type="date" id="dob" name="dob"></td>
+          </tr>
+        </table>
+
+
+      </div>
+    </fieldset>
+    <br><br>
+
+
+    <!-- for Education Detail -->
+    <fieldset>
+      <legend>Education Detail</legend><br>
+      <div id="eu_div1">
+        <input type="button" id="button" value=" + " onclick="euadditem()">
+
+        <div>
+          <tr>
+                   <td>  <label>Course Name :</label></td>
+                    <td> <select id="coursename" name="coursename">
+                    <% for(var i=0;i<coursename.length;i++) {%>
+                    <option value="<%= coursename[i].s_value %>"><%= coursename[i].s_value %></option>
+                  
+                   <%}%></td>
+                </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                </tr>
+          <label>Board Name :</label>
+          <input type="text" value="" name="boardname"  >&nbsp;&nbsp;&nbsp;&nbsp;
+          <label>Passing year:</label>
+          <input type="text" value="" name="passingyear"  >&nbsp;&nbsp;&nbsp;&nbsp;
+          <label> Percentage:</label>
+          <input type="text" value="" name="percentage"  >&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+
+
+
+
+
+        <br><br>
+      </div>
+    </fieldset>
+    <br><br>
+
+    <!-- for Work Experience -->
+    <fieldset>
+
+
+      <legend>Work Experience</legend> <br>
+      <div id="wed_div1">
+        <input type="button" id="button" name=" + " value=" + " onclick="wedadditem()"><br><br>
+
+
+        <div>
+          <label for="cnamee">Company Name :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text" value="cname" name="cname"  >&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="desi">Designation :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="text"  value="desio"  name="desio"  >&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="from">From</label>&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="date" value="csdate"  name="csdate"  >&nbsp;&nbsp;&nbsp;&nbsp;
+          <label for="to"> To </label>&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="date"  value="cedate" name="cedate"  >&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </fieldset></div> 
+      </div>
+    </fieldset>
+
+
+    <br><br>
+    <!-- for  Language Known  -->
+    <div id="filedset">
+      <fieldset id="fs2">
+        <legend>Language Known </legend>
+        <br>
+
+        <div>
+
+          <% for(var i=0;i<language.length;i++) {%>
+            <input type="checkbox" name="<%= language[i].s_value %>" value="<%= language[i].s_value %>">
+            <label for="language">
+              <%= language[i].s_value %>
+            </label>
+
+            <input type="checkbox" id="read" value="read" name="<%= language[i].s_value %>read">
+            <label for="read"> read</label>
+
+            <input type="checkbox" id="write" value="write" name="<%= language[i].s_value %>write">
+            <label for="read"> write </label>
+
+            <input type="checkbox" id="speak" value="speak" name="<%= language[i].s_value %>speak">
+            <label for="speak"> speak</label><br>
+            <%}%>
+        </div>
+        <br>
+      </fieldset>
+      <br><br><br><br>
+      <fieldset id="fs1">
+        <legend>Technologies you know</legend>
+        <br>
+        <br><br>
+        <div>
+
+          <% for(var i=0;i<tech_ans.length;i++) {%>
+
+            <input type="checkbox" name="<%= tech_ans[i].s_value %>" value="<%= tech_ans[i].s_value %>">
+            <label for="b">
+              <%= tech_ans[i].s_value %>
+            </label>
+
+
+            <input type="radio" name="<%=tech_ans[i].s_value %>a" value="beginer">
+            <label for="b"> Beginer :</label>
+
+            <input type="radio" name="<%= tech_ans[i].s_value %>a" value="mideator">
+            <label for="m"> Mideator </label>
+
+            <input type="radio" name="<%= tech_ans[i].s_value %>a" value="Expert">
+            <label for="e"> Expert</label><br>
+
+
+            <%}%>
+
+        </div>
+
+        <br>
+
+      </fieldset>
+    </div>
+    <br><br>
+
+    <!-- for Referance Contact -->
+    <fieldset>
+      <legend>Referance Contact</legend><br>
+      <label>Name :</label>
+      <input type="text" value="refname1" name="refname1">
+      <label>Contact:</label>
+      <input type="tel" value="refcontact1" name="refcontact1"><br><br>
+
+      <label>Name :</label>
+      <input type="text" value="refname2" name="refname2">
+      <label>Contact:</label>
+      <input type="tel" value="refcontact2" name="refcontact2"><br><br>
+    </fieldset>
+    <br><br><br>
+
+    <!-- for Preferances -->
+    <fieldset>
+      <legend> Preferances</legend>
+      <br>
+      <div id="leftbox">
+                <label for="pl">Preferd location :</label>
+
+                <select name="location" id="location" name="location">
+                  <% for(var i=0;i<location.length;i++) {%>
+                    <option value="<%= location[i].s_value %>"><%= location[i].s_value %></option>
+                    <%}%>
+                  </select>
+
+      </div>
+
+      <div id="middlebox">
+                  <label for="np"> Notice period</label>
+                  <input type="text" name="np" value="np"><br>
+
+                  <label for="ectc">Expacted CTC</label>
+                  <input type="text" name="ectc" value="ectc"><br>
+
+
+                  <label for="cctc">Current CTC :</label>
+                  <input type="text" name="cctc" value="cctc"><br>
+      </div>
+
+      <div id="rightbox">
+                    <label for="dp"> Department </label>
+
+                    <select id="department" name="department">
+                      <% for(var i=0;i<department.length;i++) {%>
+                        <option value="Development">
+                          <%= department[i].s_value %>
+                        </option>
+                        <%}%>
+                    </select>
+
+      </div>
+    </fieldset>
+
+    <input type="submit" name="submit">
+  </form>
+
+</body>
+<script>
+  console.log(language);
+  euadditem();
+  function euadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("eu_div1");
+    var data = `
+  <div>
+  <tr>
+           <td>  <label>Course Name :</label></td>
+            <td> <select id="coursename" name="coursename">
+            <% for(var i=0;i<coursename.length;i++) {%>
+            <option value="<%= coursename[i].s_value %>"><%= coursename[i].s_value %></option>
+          
+           <%}%></td>
+        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+        </tr>
+  <label>Board Name :</label>
+  <input type="text" value="" name="boardname"  >&nbsp;&nbsp;&nbsp;&nbsp;
+  <label>Passing year:</label>
+  <input type="text" value="" name="passingyear"  >&nbsp;&nbsp;&nbsp;&nbsp;
+  <label> Percentage:</label>
+  <input type="text" value="" name="percentage"  >&nbsp;&nbsp;&nbsp;&nbsp;</div>
+</fieldset></div> <br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+
+
+  wedadditem();
+  function wedadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("wed_div1");
+    var data = `
+  <div>
+  <label for="cnamee">Company Name :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="text" value="cname" name="cname"  >&nbsp;&nbsp;&nbsp;&nbsp;
+  <label for="desi">Designation :</label>&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="text"  value="desio"  name="desio"  >&nbsp;&nbsp;&nbsp;&nbsp;
+  <label for="from">From</label>&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="date" value="csdate"  name="csdate"  >&nbsp;&nbsp;&nbsp;&nbsp;
+  <label for="to"> To </label>&nbsp;&nbsp;&nbsp;&nbsp;
+  <input type="date"  value="cedate" name="cedate"  >&nbsp;&nbsp;&nbsp;&nbsp;</div>
+</fieldset></div> <br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+  
+  rcadditem();
+  function rcadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("rc_div1");
+    var data = `
+  <div>
+  <label for="companyname">Company Name :</label>
+  <input type="text" id="cname" name="cname"   >
+ <label for="desi">Designation :</label>
+  <input type="text" id="desi" name="desi"   >
+ <label for="from">From</label>
+  <input type="date" id="csdate" name="csdate"    >
+  <label for="to"> To </label>
+  <input type="date" id="cedate" name="cedate"  ></div>
+</fieldset></div> <br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+  
+  wedadditem();
+  function wedadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("wed_div1");
+    var data = `
+  <div>
+    
+  <label for="companyname">Company Name :</label>
+  <input type="text" id="cname" name="cname"    >
+  <label for="desi">Designation :</label>
+  <input type="text" id="desio" name="desio"     >
+  <label for="from">From</label>
+  <input type="date" id="csdate" name="csdate"   >
+ <label for="to"> To </label>
+  <input type="date" id="cedate" name="cedate"  ></div>
+</fieldset></div> <br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+
+
+  lkadditem();
+  function lkadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("fs2");
+    var data = `
+  <div>
+<div id="fs2">    
+                  <% for(var i=0;i<language.length;i++) {%>
+                  <input type="checkbox" name="<%= language[i].s_value %>" value="<%= language[i].s_value %>">
+                  <label for="language"><%= language[i].s_value %></label>
+            
+                  <input type="checkbox" id="read" value="r" name="<%= language[i].s_value %>read">
+                  <label for="read"> read</label>
+                
+                  <input type="checkbox" id="write" value="w" name="<%= language[i].s_value %>write">
+                  <label for="read"> write </label>
+                
+                  <input type="checkbox" id="speak" value="s" name="<%= language[i].s_value %>speak">
+                  <label for="speak"> speak</label><br>
+                  <%}%>
+              </div>
+</fieldset></div> <br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+
+
+  tadditem();
+  function tadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("fs1");
+    var data = `
+  <div>
+  <div id="fs2">
+              
+                             <% for(var i=0;i<tech_ans.length;i++) {%>
+                               
+                         <input type="checkbox"  name="<%= tech_ans[i].s_value %>" value="<%= tech_ans[i].s_value %>">
+                         <label for="b"><%= tech_ans[i].s_value %></label>
+
+
+                         <input type="radio" name="<%= tech_ans[i].s_value %>beginer" value="a">
+                         <label for="b"> Beginer :</label>
+                       
+                         <input type="radio"  name="<%= tech_ans[i].s_value %>mideator" value="a">
+                         <label for="m"> Mideator </label>
+                       
+                         <input type="radio"  name="<%= tech_ans[i].s_value %>Expert" value="a">
+                         <label for="e"> Expert</label><br>
+
+
+                         <%}%>
+                  
+                         </div>
+</fieldset></div> <br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+
+  //call test-api 
+  async function testapi() {
+    const ans = await fetch('http://localhost:9000/testapi');
+    const data = await testapians.json();
+    console.log(data);
+  }
+  //store textbox's data 
+  testapi();
+
+  //city-state logic
+
+  async function changecity() {
+    var states = document.getElementById("state");
+    var state_id = states.value;
+    console.log(state_id);
+
+    const qry_string = await fetch(`/changecity/?sid=${state_id}`);
+    const city = await qry_string.json();
+    console.log('ejs data');
+    console.log(city);
+
+    updatecity(city);
+  }
+
+  function updatecity(city) {
+    const ct_dropdown = document.getElementById("city");
+    ct_dropdown.innerHTML = "";
+
+    for (let k = 0; k < city.length; k++) {
+      const option = document.createElement('option');
+      option.innerHTML = city[k].city_name;
+      option.innerText = city[k].city_name;
+      ct_dropdown.appendChild(option);
+    }
+  }
+</script>
+
+</html>

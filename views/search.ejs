@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*	
+	Table Responsive
+	===================
+	Author: https://github.com/pablorgarcia
+ */
+
+    @charset "UTF-8";
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.42em;
+      color: #f5f3f7;
+      background-color: #1F2739;
+    }
+
+    input[type=submit] {
+
+      position: relative;
+      background-color: #f3faf8;
+      font-weight: bold;
+      border: none;
+      size: 100cm;
+      color: rgb(0, 0, 0);
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+
+    .blue {
+      color: #185875;
+    }
+
+    .yellow {
+      color: #F08080;
+      ;
+    }
+
+    .container th h4 {
+      font-weight: bold;
+      font-size: 1em;
+      text-align: left;
+      color: #185875;
+    }
+
+    .container td {
+      font-weight: normal;
+      font-size: 1em;
+      -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+      -moz-box-shadow: 0 2px 2px -2px #0E1119;
+      box-shadow: 0 2px 2px -2px #0E1119;
+    }
+
+
+
+
+
+    /* Background-color of the odd rows */
+    .container tr:nth-child(odd) {
+      background-color: #323C50;
+    }
+
+    /* Background-color of the even rows */
+    .container tr:nth-child(even) {
+      background-color: #2C3446;
+    }
+
+    .container th {
+      background-color: #1F2739;
+    }
+
+    .container td:first-child {
+      color: #FB667A;
+    }
+
+    .container tr:hover {
+      background-color: #464A52;
+      -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+      -moz-box-shadow: 0 6px 6px -6px #0E1119;
+      box-shadow: 0 6px 6px -6px #0E1119;
+    }
+
+    .container td:hover {
+      background-color: #F08080;
+      ;
+      color: #403E10;
+      font-weight: bold;
+
+      box-shadow: #F08080 -1px 1px, #F08080 -2px 2px, #F08080 -3px 3px, #F08080 -4px 4px, #F08080;
+      transform: translate3d(6px, -6px, 0);
+       transition-delay: 0s;
+      transition-duration: 0.4s;
+      transition-property: all;
+      transition-timing-function: line;
+    }
+
+
+    body {}
+
+    td {
+      height: 30px;
+      width: 100px;
+    }
+
+    .table {
+      border: 1;
+      border-radius: 10px;
+      box-shadow: #9b62c1;
+      border-color: black;
+      height: 70%;
+      width: 70%;
+      background: linear-gradient(45deg, #95eae7, #b796cc);
+
+
+    }
+
+    th {
+      padding-bottom: 2px;
+      font-size: large;
+      background-color: #49a09d;
+    }
+
+    a {
+      background-color: rgb(145, 84, 166);
+      color: white;
+      padding: 0em 1.3em;
+      text-decoration: none;
+      text-transform: uppercase;
+
+    }
+
+    a:hover {
+      background-color: rgb(60, 89, 217);
+    }
+
+    nav {
+      border-radius: 20px;
+      border: 20px;
+    }
+
+    input[type=text] {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    select {
+      display: inline-block;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <h1>
+      <hr color="#9b62c1" width="300%">CRUD Operation on Candidate Data 
+    </h1>
+  </center>
+  <hr color="#9b62c1" width="300%">
+  <table id="typem">
+
+    <form action="/search" method="post">
+
+    </form>
+    </td>
+    <td>
+      <h3 style="width: 50%;">&nbsp;^firstname&nbsp;$lastname&nbsp;_phonenumber&nbsp;~gender&nbsp;&Email&nbsp; </h3>
+    </td>
+
+    </tr>
+
+  </table>
+
+
+  <table border="">
+    <form action="/search" method="post">
+      <table id="form">
+        <tr>
+          <td style="size: 10px; padding: 10px; font-size: medium; width: 100%;"> <input type="text"
+              placeholder="^sejal$yadav_+917069122988~female&sejalyadav122@gmail.com"
+              value="^sejal$yadav_+917069122988~female&sejalyadav122@gmail.com" name="demo"></td>
+          <div class="button">
+            <div class="container">
+              <div class="tick">
+              </div>
+            </div>
+          </div>
+          <td><input style=" background: #9b62c1;box-sizing: border-box; font-size: larger;" type="submit"
+              name="search"></td>
+        </tr>
+      </table>
+
+    </form>
+    <h4>Table: candidate_master</h4>
+    <table border="1" class="container" id="candi_master">
+      <tr>
+
+        <th>candidate_firstname</th>
+        <th>candidate_lastname</th>
+        <th>candidate_phone </th>
+        <th>candidate_gender</th>
+        <th>candidate_email</th>
+        <th>all_info</th>
+        <a id="deletehandle" href="">Delete Selected</a>
+
+
+      </tr>
+      <% for(var i=0;i<data.length;i++) {%>
+        <tr id="t<%= data[i].candidate_id%>">
+
+          <td>
+            <%= data[i].candidate_firstname %>
+          </td>
+          <td>
+            <%= data[i].candidate_lastname %>
+          </td>
+          <td>
+            <%= data[i].candidate_phone %>
+          </td>
+          <td>
+            <%= data[i].candidate_gender%>
+          </td>
+
+
+          <td>
+            <%= data[i].candidate_email%>
+          </td>
+
+          <td>
+            <a href="/moredata?id=<%= i %>"> More </a>
+          </td>
+
+          <td>
+            <a href="/edit/?candidate_id=<%=data[i].candidate_id%>"> edit </a>
+          </td>
+
+          <td>
+            <a href="/deletedata/?candidate_id=<%= data[i].candidate_id%>"
+              onclick="deleteData('<%= data[i].candidate_id%>')">Delete </a>
+          </td>
+
+          <td>
+
+            <input class="deleteallchek" type="checkbox" name="delete_check" id="<%= data[i].candidate_id %>">
+          </td>
+
+          <td>
+
+            
+          </td>
+
+
+
+        </tr>
+
+        <%}%>
+
+        
+
+    </table>
+
+    </tbody>
+  </table>
+
+
+ 
+
+
+</body>
+<script>
+
+//async function for delete the data
+async function deleteData(candidate_id) {
+    if (confirm("Are you sure you want to proceed?") == true) {
+
+      const query_string = await fetch(`/deletedate/?candidate_id=${candidate_id}`);
+    }
+    else {
+      return false;
+    }
+  }
+
+
+const delete_click = document.getElementById('deletehandle')
+delete_click.addEventListener('click', async () => {
+    const checkbox = document.querySelectorAll(".deleteallchek")
+    console.log(checkbox);
+    if (checkbox == undefined || checkbox == null) {
+      delete_click.disabled = true;
+
+    }
+    let ids = [];
+    let count = 0;
+    for (let i = 0; i < checkbox.length; i++) {
+      if (checkbox[i].checked) {
+        ids[count] = checkbox[i].id;
+        count++;
+      }
+    }
+    console.log(ids)
+
+    //alert 
+    const alert_result = confirm(`Are you want to delete this ids ${ids.toString()}  ?`);
+    if (alert_result == true) {
+
+      const response = await fetch(`/deletealldata/?candidate_id=${ids}`);
+
+      var res = await response.json()
+    }
+
+    //disable ids 
+    if (res) {
+
+      // let ele = `t${ids}`
+      // var s_id = ids.split(",")
+      // //console.log(s_id);
+      // s_id.forEach(element => {
+
+      //   document.getElementById(s_id[i]).style.display="none"
+
+      // });
+      location.reload(true)
+
+
+    }
+  })
+
+
+
+
+
+
+
+
+
+//function to get search data in AJX
+async function searchdatafirst()
+{
+
+  const ans1= await fetch ('http://localhost:9000/testapi/first');
+  const data1 = await  ans1.json();
+  console.log(data1);
+}
+
+searchdatafirst();
+
+
+
+
+//function to get search data in AJX
+async function searchdatasecond()
+{
+
+  const ans2= await fetch ('http://localhost:9000/testapi/second');
+  const data2 = await  ans2.json();
+
+  console.log(data2);
+}
+
+searchdatasecond();
+
+</script>
+
+</body>
+
+</html>

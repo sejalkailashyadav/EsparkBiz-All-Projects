@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+    .container{
+    display: grid;
+    grid-template-rows: repeat(3, 10vw);
+    grid-template-columns: repeat(3, 10vw);
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    
+}
+
+span
+{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: larger;
+    color: #F95700FF;
+}
+.box{
+    border: 1px solid #F95700FF;
+    font-size: 8vw;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    
+}
+
+.box:hover {
+    background-color: black
+  }
+
+#reset {
+    margin: 0 23px;
+    padding: 1px 18px;
+    background: #f3e7f9;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Baloo Bhaina 2';
+    font-size: 15px;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+button
+{
+    color: aquamarine;
+    background-color: black;
+    size: 10px;
+}
+
+  </style>
+  <body>
+    <fieldset><legend><h1>Tic-Tac-Toe Game </h1></legend>
+            <div class="gameContainer">
+                                
+                                <div class="container" >
+                                        <div class="box bt-0 bl-0"><span class="sejal"></span></div>
+                                        <div class="box bt-0"><span class="sejal"></span></div>
+                                        <div class="box bt-0 br-0"><span class="sejal"></span></div>
+                                        <div class="box bl-0"><span class="sejal"></span></div>
+                                        <div class="box"><span class="sejal"></span></div>
+                                        <div class="box br-0"><span class="sejal"></span></div>
+                                        <div class="box bl-0 bb-0"><span class="sejal"></span></div>
+                                        <div class="box bb-0"><span class="sejal"></span></div>
+                                        <div class="box bb-0 br-0"><span class="sejal"></span></div>
+                              </div>
+
+                              <br>
+                              <br>
+                                  <span class="info">Turn for X</span>
+                                  <button id="reset">Reset Game </button>
+                                
+                                
+            </div>
+          </fieldset>
+          
+        
+    <script>//let sejal_pl1=prompt("Enter Name of Player one ");
+    //let sejal_pl2=prompt("Enter Name of Player secound ");
+    
+    let sejal_turn = "X"
+    let sejal_isgameover = false;
+    
+    //  change the turn
+    const changeTurn = ()=>{
+        return sejal_turn === "X"? "O": "X"
+    }
+    //  a win
+    const checkWin = ()=>{
+        let sejal = document.getElementsByClassName('sejal');
+        let sejal_wins = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ]
+        sejal_wins.forEach(e =>{
+            if((sejal[e[0]].innerText === sejal[e[1]].innerText) && (sejal[e[2]].innerText === sejal[e[1]].innerText) && (sejal[e[0]].innerText !== "") ){
+                document.querySelector('.info').innerText = "Player " + sejal[e[0]].innerText + " Won !!! "
+                
+                sejal_isgameover = true
+            
+            }
+        })
+    }
+    
+    //  Logic
+    let boxes = document.getElementsByClassName("box");
+    Array.from(boxes).forEach(element =>{
+        let sejal = element.querySelector('.sejal');
+        element.addEventListener('click', ()=>{
+            if(sejal.innerText === ''){
+                sejal.innerText = sejal_turn;
+                sejal_turn = changeTurn();
+                             checkWin();
+                if (!sejal_isgameover){
+                    document.getElementsByClassName("info")[0].innerText  = "Turn for " + sejal_turn;
+                } 
+            }
+        })
+    })
+    
+    // reset button
+    reset.addEventListener('click', ()=>{
+        let boxtexts = document.querySelectorAll('.sejal');
+        Array.from(boxtexts).forEach(element => {
+            element.innerText = ""
+        });
+         sejal_turn = "X"; 
+         sejal_isgameover = false
+        document.getElementsByClassName("info")[0].innerText  = "Turn for " + sejal_turn;
+        
+    })
+    
+    
+    </script>
+  </body>
+</html>

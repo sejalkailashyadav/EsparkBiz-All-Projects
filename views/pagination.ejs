@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        td {
+            height: 30px;
+            width: 100px;
+        }
+        table {
+                border: 1;
+                border-radius: 10px;
+                box-shadow: #9b62c1;
+                border-color: black;
+                height: 70%;
+                width: 70%;
+                background: linear-gradient(45deg, #95eae7, #b796cc);
+                
+
+            }
+          th{
+            padding-bottom: 2px;
+            font-size: large;
+            background-color: #49a09d;
+          }
+            a {
+  background-color: rgb(145, 84, 166);
+  color: white;
+  padding: 0em 1.3em;
+  text-decoration: none;
+  text-transform: uppercase;
+  
+}    
+a:hover {
+  background-color: rgb(60, 89, 217);
+}
+
+nav{
+    border-radius: 20px;
+    border: 20px;
+}
+    
+    </style>
+</head>
+
+<body>
+    <center><h1><hr color="#9b62c1" width="300%">Student  Express Data Table </h1></center>
+    <hr color="#9b62c1" width="300%">
+
+    <table border="1" style="height: 100%; width: 100%;">
+
+      
+
+        <% for(var i=0;i<order.length;i++) {%>
+            
+          
+        <tr>
+            <td>
+                <%= order[i].id %>
+            </td>
+            <td>
+                <%= order[i].firstname %>
+            </td>
+            <td>
+                <%= order[i].lastname %>
+            </td>
+            <td>
+                <%= order[i].email %>
+            </td>
+        </tr>    
+            
+        <%}%>
+           
+            
+    </table>
+
+<br><br>
+    <div id="nav">
+        <% for(var i=1;i<30;i++) {%>
+            <a <% if(page == 1) { %>
+                style="color:black";
+           <% } %>
+                href="/sort/?page=<%= i%>"><%= i %> </a>
+            <%}%>
+        </div>
+
+
+</body>
+</html>

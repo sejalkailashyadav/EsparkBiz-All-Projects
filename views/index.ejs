@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <div id="temp"><h1>Dynamic  fuction for Combo & Radio & Checkbox</h1>
+    </div>
+
+</body>
+<script>
+
+    
+    async function sample(s_id, type, comboname) {
+        console.log("call", s_id)
+        const qry_string = await fetch(`/sample/?id=${s_id}`);
+
+        const data = await qry_string.json();
+
+
+
+        const ans = data.result;
+
+        if (type == "combo") {
+            let select = "";
+            select += `<select name="${comboname}">`
+            for (let i = 0; i < ans.length; i++) {
+                select += `<option value="${ans[i].option_values}">${ans[i].option_values}</option>`
+
+            } select += `</select>`
+            const div = document.createElement('div');
+            div.innerHTML = select;
+            document.getElementById('temp').appendChild(div);
+        }
+        else if (type == "radio") {
+            let radio = "";
+            for (let j = 0; j < ans.length; j++) {
+                radio += `<input type="radio" value="${ans[j].option_values}">${ans[j].option_values}</input>`
+            }
+            const div = document.createElement('div');
+            div.innerHTML = radio;
+            document.getElementById('temp').appendChild(div);
+        }
+
+        else if (type == "checkbox") {
+            let check = "";
+            for (let k = 0; k < ans.length; k++) {
+                check += `<input type="checkbox"  value="${ans[k].option_values}">${ans[k].option_values}</input>`
+            }
+            const div = document.createElement('div');
+            div.innerHTML = check;
+            document.getElementById('temp').appendChild(div);
+        }
+    }
+
+    sample(2, 'combo', "subjects");
+    sample(1, 'radio', "gender");
+    sample(10, 'checkbox', "languages");
+    
+
+</script>
+
+</html>

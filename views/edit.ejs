@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    body {
+      background-color: rgb(255, 255, 255);
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin-bottom: 10%;
+      font-weight: 100px;
+      font-weight: bold;
+
+    }
+
+    #fieldset {
+      background-color: #eeeeee;
+
+
+    }
+
+    legend {
+      background-color: rgb(0, 0, 0);
+      color: white;
+      padding: 5px 10px;
+    }
+
+
+
+    #basic1 {
+      float: left;
+      background: rgb(255, 255, 255);
+      width: 50%;
+
+    }
+
+    #basic2 {
+
+
+
+
+      float: right;
+      background: rgb(255, 255, 255);
+      width: 50%;
+    }
+
+    #leftbox {
+      float: left;
+
+      width: 25%;
+      height: 280px;
+    }
+
+    #middlebox {
+      float: left;
+
+      width: 50%;
+      height: 280px;
+    }
+
+    #rightbox {
+      float: right;
+
+      width: 25%;
+      height: 280px;
+    }
+
+
+
+
+
+    #filedset {
+      display: flex;
+
+    }
+
+    #fs1 {
+      float: left;
+      height: 50%;
+      width: 50%;
+    }
+
+    #fs1 {
+      float: right;
+      width: 50%;
+      height: 50%;
+    }
+
+
+    input[type=submit],
+    #eu_div1,
+    #wed_div1 {
+
+      position: relative;
+      background-color: #f3faf8;
+      font-weight: bold;
+      border: none;
+      color: rgb(0, 0, 0);
+      padding: 16px 32px;
+      text-decoration: none;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <center>
+    <h1 style=" font-family: Verdana, Geneva, Tahoma, sansu1d-serif;"> Edit Job Application Form</h1>
+  </center>
+
+  <form action="/edit" method="get">
+
+    <fieldset>
+
+      <legend> Basic Detail</legend>
+      <div id="boxes">
+        <table id="basic1">
+          <tr>
+            <td><label for="username">First Name :</label></td>
+            <td><input type="text" id="fname" name="fname" value="<%= basic_info_result_g[0].candidate_firstname %>"> </td>
+          </tr>
+
+          <tr>
+            <td><label for="email">Email</label></td>
+            <td><input type="email" id="email" value="<%= basic_info_result_g[0].candidate_email %>" name="email"></td>
+          </tr>
+          <tr>
+            <td><label for="phone"> Phone Number</label></td>
+            <td><input type="tel" id="phone" value="<%= basic_info_result_g[0].candidate_phone %>" name="phone"></td>
+          </tr>
+          <tr>
+            <td>
+              <p>Gender :</p>
+            <td><input type="radio" id="male" name="gender" value="male" <% if(basic_info_result_g[0].candidate_gender=='male' ){ %>
+              checked <% } %> />
+
+                <label for="male">Male</label>
+                <input type="radio" id="css" name="gender" value="female" <% if(basic_info_result_g[0].candidate_gender=='female' ){
+                  %> checked <% } %> />
+                  <label for="female">Female</label>
+                  <input type="radio" id="other" name="gender" value="other" <% if(basic_info_result_g[0].candidate_gender=='other'
+                    ){ %> checked <% } %> />
+                    <label for="other">Other</label>
+            </td>
+          </tr>
+
+         
+
+
+          
+          <tr>
+            <td> <label for="relation"> Relationship state </label></td>
+            <td> <select id="rel" name="rel">
+                <% for(var j=0;j< relaation_info_result_g.length;j++) {%>
+                  <option value="<%= relaation_info_result_g[j].s_value %>"  
+                    <% if (basic_info_result_g[0].candidate_relation  == relaation_info_result_g[j].s_value) { %> selected <% } %>>
+                             <%= relaation_info_result_g[j].s_value %>
+                  </option>
+
+                 <%}%>
+            </td>
+            </select>
+          </tr>
+        </table>
+
+
+
+        <table id="basic2">
+
+
+          <tr>
+            <td> <label for="username">Last Name :</label></td>
+            <td> <input type="text" id="lname" value="<%= basic_info_result_g[0].candidate_lastname %>" name="lname"></td>
+          </tr>
+          <tr>
+            <td> <label for="ad2">Address :</label>
+            <td><input type="text" value="<%= basic_info_result_g[0].candidate_address %>" id="ad2" name="ad2"></td>
+          </tr>
+
+          <tr>
+            <td> <label for="state"> state </label></td>
+            <td> <select id="state_id" name="state" onchange="changecity(this)">
+                <% for(var i=0;i<state_info_result_g.length;i++) {%>
+                  <option value="<%= state_info_result_g[i].sid %>">
+                    <% if (state_info_result_g[i].state_name  == basic_info_result_g[0].candidate_state) { %> selected <% } %> >
+                    <%= state_info_result_g[i].state_name  %>
+                  </option>
+                  <%}%>
+              </select>
+            </td>
+          </tr>
+       
+          <tr>
+            <td> <label for="city"> city </label></td>
+            <td> <select id="city" name="city">
+                <option value="Select City" selected disabled>
+                  <%= basic_info_result_g[0].candidate_city %>
+                </option>
+
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td><label for="dob"> Date of Birth </label></td>
+
+            <td><input type="date" id="dob" value="<%= basic_info_result_g[0].candidate_dob %>" name="dob"></td>
+          </tr>
+
+
+          <tr>
+            <td> <label for="zipcode"> zip code </label></td>
+            <td><input type="text" id="zip" value="<%= basic_info_result_g[0].candidate_zipcode %>" name="zip"></td>
+          </tr>
+
+
+
+
+        </table>
+      </div>
+    </fieldset>
+    <br><br>
+
+
+    <!-- for Education Detail -->
+    <fieldset>
+      <legend>Education Detail</legend><br>
+      <div id="eu_div1">
+        <input type="button" id="button" value=" + " onclick="euadditem()">
+
+        <tr>
+                                      <td><label>Course Name :</label>
+                                          <td> <select id="coursename"  name="coursename" >
+                                            <% for(var j=0 ; j<course_info_result_g.length;j++){ %>    
+                                          <option value="<%= course_info_result_g[j].s_value %>"> 
+                                          <% if (course_info_result_g[j].s_value  == acd_info_result_g[i].candidate_coursename) {%> selected  <% } %> 
+                                           <%= course_info_result_g[j].s_value %>
+                                            </option>
+                                            <% } %>
+                                       </select>&nbsp;&nbsp;&nbsp;&nbsp;  </td>
+                                    
+                  
+                                     
+                                        <td>  <label>Board Name :</label>
+                                          <input type="text" name="boardname"  value="<%= acd_info_result_g[i].candidate_board %>">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                                        <td>  <label>Passing year:</label>
+                                        <input type="text"  name="passingyear" value="<%= acd_info_result_g[i].candidate_passingyear %>">&nbsp;&nbsp;&nbsp;&nbsp;</td>   
+                                        
+                                     <td><label> Percentage:</label>
+                                          <input type="text"  name="percentage"  value="<%= acd_info_result_g[i].candidate_percentage  %>">  &nbsp;&nbsp;&nbsp;&nbsp;
+                                          <%}%></td>   
+                                        </tr>
+        
+        <br><br>
+      </div>
+    </fieldset>
+    <br><br>
+
+
+
+  <fieldset>
+    <legend>Work Experience</legend> <br>
+    <div id="wed_div1">
+      <input type="button" id="button" name=" + " value=" + " onclick="wedadditem()"><br><br>
+
+      <label for="companyname">Company Name :</label>
+  <input type="text" id="cname" name="cname"  value="<%= exp_info_result_g[i].companyname %>" >
+  <label for="desi">Designation :</label>
+  <input type="text" id="desio" name="desio"  value="<%= exp_info_result_g[i].desig  %>">
+  <label for="from">From</label>
+  <input type="date" id="csdate" name="csdate" value="<%= exp_info_result_g[i].joindate %>">
+ <label for="to"> To </label>
+  <input type="date" id="cedate" name="cedate" value="<%= exp_info_result_g[i].enddate %>">
+    </div>
+    </fieldset>
+
+    <!-- for  Language Known  -->
+  
+      <br><br><br><br>
+
+
+
+      <fieldset id="basic-1">
+        <legend><b>Language Known</b></legend>
+        <table>
+            <% for(let m=0;m<lang_info_result_g.length;m++) {%>
+                <td><input type="checkbox" id="lan" name="<%= lang_info_result_g[m].candidate_language%> value="<%= lang_info_result_g[m].candidate_language %>" checked>
+                </input>
+          
+                <label for="<%= lang_info_result_g[m].candidate_language %>"><%= lang_info_result_g[m].candidate_language %>
+                </label>
+        
+                    <td><input type="checkbox" id="lan" name="<%= lang_info_result_g[m].candidate_read %> value="<%= lang_info_result_g[m].candidate_read  %>" 
+                        <% if(lang_info_result_g[m].candidate_read  != "0") { %>
+                        checked
+                        <% } %> >Read
+                    </td>
+                    <td><input type="checkbox" id="lan" name="<%= lang_info_result_g[m].candidate_write%> value="<%= lang_info_result_g[m].candidate_write %>" 
+                        <% if(lang_info_result_g[m].candidate_write != "0") { %>
+                        checked
+                        <% } %> >Write
+                    </td>
+                    </td>
+                    <td><input type="checkbox" id="lan" name="<%= lang_info_result_g[m].candidate_speak%> value="<%= lang_info_result_g[m].candidate_speak %>" 
+                        <% if(lang_info_result_g[m].candidate_speak != "0") { %>
+                        checked
+                        <% } %> >Speak
+                    </td>
+                    </td>
+
+
+
+
+
+                </tr>
+                <% } %>
+        </table>
+    </fieldset><br>
+</div><br>
+
+<fieldset id="basic-2">
+  <legend><b>Technologies Known</b></legend>
+  <table>
+      <% for(let n=0;n<tech_info_result_g .length;n++) {%>
+          <tr>
+              <td><input type="checkbox" id="lan" name="<%= tech_info_result_g [n].candidate_tech_name %>" value="<%= tech_info_result_g [n].candidate_tech_name%>" checked>
+                  <%= tech_info_result_g [n].candidate_tech_name   %>
+              </td>
+              <td><input type="radio" name="<%= tech_info_result_g [n].candidate_tech_name %>" value="begginer"
+                  <% if(tech_info_result_g [n].candidate_efficiency == "beginer") { %>
+                      checked
+                      <% } %>  >Begginer</td>
+              <td><input type="radio" name="<%= tech_info_result_g [n].candidate_tech_name %>" value="intermediate"
+                  <% if(tech_info_result_g [n].candidate_efficiency == "mideator") { %>
+                      checked
+                      <% } %> >Mideator
+              </td>
+              <td><input type="radio" name="<%= tech_info_result_g [n].candidate_tech_name %>" value="expert" 
+                  <% if(tech_info_result_g [n].candidate_efficiency == "Expert") { %>
+                      checked
+                      <% } %> >Expert</td>
+          </tr>
+          <% } %>
+  </table>
+</div>
+</fieldset>
+
+
+
+    <!-- for Referance Contact -->
+    <fieldset>
+      <legend>Referance Contact</legend><br>
+      
+      <label>Name :</label>
+      <input type="text" value="<%= ref_info_result_g[0].candidate_name %>" name="refname1">
+      <label>Contact:</label>
+      <input type="tel" value="<%= ref_info_result_g[0].candidate_contact %>" name="refcontact1"><br><br>
+
+      <label>Name :</label>
+      <input type="text" value="<%= ref_info_result_g[1].candidate_name %>" name="refname2">
+      <label>Contact:</label>
+      <input type="tel" value="<%= ref_info_result_g[1].candidate_contact %>" name="refcontact2"><br><br>
+    </fieldset>
+    <br><br><br>
+
+
+<fieldset >
+  <legend> Preferances</legend>
+<br>
+<div id="leftbox">
+  </div>
+
+    <div id="middlebox">
+      <label for="np"> Notice period</label>
+      <input type="text" name="np" value="<%= basic_info_result_g[0].candidate_notice_perio %>"><br>
+
+      <label for="ectc">Expacted CTC</label>
+      <input type="text" name="ectc" value="<%= basic_info_result_g[0].candidate_expactedctc %>"><br>
+
+
+      <label for="cctc">Current CTC :</label>
+      <input type="text" name="cctc" value="<%= basic_info_result_g[0].candidate_currentctc %>"><br>
+    </div>
+
+
+    <div id="rightbox">
+
+    </div>
+  </fieldset>  
+
+
+
+      <input type="submit" name="submit" value="Update">
+  </form>
+</body>
+<script>
+
+for(var i=0;i< basic_info_result_g.length;i++){
+console.log(basic_info_result_g[0].candidate_firstname);  
+}
+
+console.log( "acdmic" ,  acd_info_result_g);
+console.log("exp", exp_info_result_g );
+console.log("refrance " , ref_info_result_g );
+console.log("pre location " ,pfloc_info_result_g);   
+console.log("technology ", tech_info_result_g );
+console.log("city" ,  city_info_result_g );
+console.log("states" ,  state_info_result_g );
+console.log("languages" ,  lang_info_result_g );
+
+
+  euadditem();
+
+  function euadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("eu_div1");
+
+    var data = `
+<div>
+ <tr>
+ 
+  
+ <% for(var i=0;i<acd_info_result_g.length;i++) {%>
+                          
+                                    <tr>
+                                      <td><label>Course Name :</label>
+                                          <td> <select id="coursename"  name="coursename" >
+                                            <% for(var j=0 ; j<course_info_result_g.length;j++){ %>    
+                                          <option value="<%= course_info_result_g[j].s_value %>"> 
+                                          <% if (course_info_result_g[j].s_value  == acd_info_result_g[i].candidate_coursename) {%> selected  <% } %> 
+                                           <%= course_info_result_g[j].s_value %>
+                                            </option>
+                                            <% } %>
+                                       </select>&nbsp;&nbsp;&nbsp;&nbsp;  </td>
+                                    
+                  
+                                     
+                                        <td>  <label>Board Name :</label>
+                                          <input type="text" name="boardname"  value="<%= acd_info_result_g[i].candidate_board %>">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+                                        <td>  <label>Passing year:</label>
+                                        <input type="text"  name="passingyear" value="<%= acd_info_result_g[i].candidate_passingyear %>">&nbsp;&nbsp;&nbsp;&nbsp;</td>   
+                                        
+                                     <td><label> Percentage:</label>
+                                          <input type="text"  name="percentage"  value="<%= acd_info_result_g[i].candidate_percentage  %>">  &nbsp;&nbsp;&nbsp;&nbsp;
+                                          <%}%></td>   
+                                        </tr>
+                                        
+</fieldset></div>
+<br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+
+
+
+  wedadditem();
+  function wedadditem() {
+    var new_div = document.createElement("div");
+    var div = document.getElementById("wed_div1");
+    var data = `
+  <div>
+     
+  <% for(var i=0;i<exp_info_result_g.length;i++) {%>
+  <label for="companyname">Company Name :</label>
+  <input type="text" id="cname" name="cname"  value="<%= exp_info_result_g[i].companyname %>" >
+  <label for="desi">Designation :</label>
+  <input type="text" id="desio" name="desio"  value="<%= exp_info_result_g[i].desig  %>">
+  <label for="from">From</label>
+  <input type="date" id="csdate" name="csdate" value="<%= exp_info_result_g[i].joindate %>">
+ <label for="to"> To </label>
+  <input type="date" id="cedate" name="cedate" value="<%= exp_info_result_g[i].enddate %>"></div>
+</fieldset></div> 
+
+<%}%>
+<br><br>
+  `;
+    new_div.innerHTML = data;
+    div.appendChild(new_div);
+  }
+
+  
+
+
+async function changecity() {
+ console.log("i am hear");
+       var states = document.getElementById("state_id");
+       var state_id = states.value;
+       console.log(state_id);
+       console.log("i am hear");
+       const qry_string = await fetch(`/changecity/?sid=${state_id}`);
+       const city = await qry_string.json();
+       console.log('ejs data');
+       console.log(city);
+
+
+       updatecity(city);
+   }
+
+
+   function updatecity(city) {
+       const ct_dropdown = document.getElementById("city");
+       ct_dropdown.innerHTML = "";
+
+
+       for (let k = 0; k < city.length; k++) {
+           const option = document.createElement('option');
+           option.innerHTML = city[k].city_name;
+           option.innerText = city[k].city_name;
+           ct_dropdown.appendChild(option);
+       }
+   }
+
+
+
+
+
+</script>
+
+</html>

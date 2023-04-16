@@ -1,0 +1,125 @@
+body
+{
+    background-image: url("/images/auth-bg.png");
+}
+.container
+{
+    width: 360px;
+    height: 620px;
+    margin: auto;
+      margin-left: auto;
+    background-color: hsla(120, 100%, 2%, 0.48);
+    color: aliceblue;
+    border-radius: 3px;
+    opacity: 1px;
+    margin-left: 170px;
+    padding: 30px;
+    
+}
+
+.formc
+{
+     font-size: 10px;
+    width : 100px
+}
+.space
+{
+    margin-top: 9%;
+}
+.w3-blue, .w3-hover-blue:hover {
+    color: #fff!important;
+    background-color: #009688b8!important;
+    padding: 10px 107px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 69px;
+}
+
+
+.w3-blue, .w3-hover-blue:hover {
+  color: #fff!important;
+  background-color: #009688b8!important;
+  padding: 10px 107px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin-bottom: 69px;
+}
+
+.img-bottom{
+    position: absolute;
+    right: 500px;
+    bottom: 10px;
+
+}
+.img-top
+{
+    margin-top: 10px; 
+
+    margin-bottom: 99px;
+
+}
+#demo
+{
+    font-size: small;
+    color: brown;
+}
+
+/* for password validation  */
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+    display:none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+  }
+  
+  #message p {
+    padding: 10px 35px;
+    font-size: 18px;
+  }
+  
+  /* Add a green text color and a checkmark when the requirements are right */
+  .valid {
+    color: green;
+  }
+  
+  .valid:before {
+    position: relative;
+    left: -35px;
+    content: "&#10004;";
+  }
+  
+  /* Add a red text color and an "x" icon when the requirements are wrong */
+  .invalid {
+    color: red;
+  }
+  .topnav {
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
