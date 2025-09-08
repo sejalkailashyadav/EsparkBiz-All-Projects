@@ -1,4 +1,3 @@
-
 # All Projects
 ## Tic-Tac-Toe 
  using HTML & JavaScript
