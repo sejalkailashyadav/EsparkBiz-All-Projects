@@ -3,7 +3,6 @@
  using HTML & JavaScript
 
 ## Color-cube
-
 using HTML & JavaScript
 ## figma-one & figma-two 
 using html-css
