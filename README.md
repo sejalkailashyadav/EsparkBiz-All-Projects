@@ -2,7 +2,6 @@
 
 ## Tic-Tac-Toe 
  using HTML & JavaScript
-
 ## Color-cube
 using HTML & JavaScript
 ## figma-one & figma-two 
